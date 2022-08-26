@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+Encyclopedia
+{% endblock %}
+
+{% block body %}
+<h1>Create New Page</h1>
+
+{% if already_exist %}
+<div class="alert alert-danger">
+	This page already exist. If you wannt view or edit the page <a href="/wiki/{{ entryTitle }}">click here</a>.
+</div>
+{% endif %}
+
+<form action="{% url 'save' %}" method="POST">
+	{% csrf_token %}
+	<div class="form-group">
+		<label class="form-titles">Title</label>
+		<input type="text" name="title" class="form-control" id="exampleFormControlInput1">
+	</div>
+
+	<div class="form-group">
+		<label class="form-titles">Page Content (Please enter in Markup Language for formatting)</label>
+		<textarea class="form-control" name="text" id="exampleFormControlTextarea1" rows="8"></textarea>
+	</div>
+	<button type="submit" class="btn btn-outline-dark">Submit</button>
+</form>
+
+
+
+{% endblock %}
